@@ -1,0 +1,15 @@
+include(${CMAKE_CURRENT_LIST_DIR}/TBBTargets.cmake)
+# Do our experiments in /tmp
+cd /tmp
+# Clone oneTBB repository
+git clone https://github.com/oneapi-src/oneTBB.git
+cd oneTBB
+# Create binary directory for out-of-source build
+mkdir build && cd build
+# Configure: customize CMAKE_INSTALL_PREFIX and disable TBB_TEST to avoid tests build
+cmake -DCMAKE_INSTALL_PREFIX=/tmp/my_installed_onetbb -DTBB_TEST=OFF ..
+# Build
+cmake --build .
+# Install
+cmake --install .
+# Well done! Your installed oneTBB is in /tmp/my_installed_onetbb
